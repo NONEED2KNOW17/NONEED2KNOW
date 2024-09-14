@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ռօռɛɛɖ2ӄռօա</title>
+    <style>
+        body {
+            background-color: #001100;
+            color: #00FF00;
+            font-family: monospace;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .matrix-effect {
+            position: fixed; /* Utilisez fixed pour que le canevas occupe toute la page */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .matrix-effect canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: #002200;
+            border: 2px solid #00FF00;
+            box-shadow: 0 0 15px #00FF00;
+            margin-top: 50px;
+            border-radius: 8px;
+            max-width: 800px; /* Largeur de la boîte, ajustable */
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-text {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #00FF00;
+            border: 1px solid #00FF00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #004400;
+            transform: scale(1.1);
+        }
+
+        footer {
+            margin-top: auto;
+            color: #00FF00;
+            padding: 10px 0;
+            z-index: 2;
+        }
+
+        .discord-button {
+            margin-top: 40px;
+            padding: 15px 30px;
+            border: 2px solid #00FF00;
+            border-radius: 5px;
+            color: #00FF00;
+            text-decoration: none;
+            font-size: 1.5rem;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .discord-button:hover {
+            background-color: #004400;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-effect">
+        <canvas id="matrixCanvasMiddle"></canvas>
+    </div>
+
+    <div class="container">
+        <div class="logo-text">
+            ռօռɛɛɖ2ӄռօա
+        </div>
+
+        <!-- Sections -->
+        <section id="accueil">
+            <h2>Accueil</h2>
+            <p>Bienvenue sur le site web de ռօռɛɛɖ2ӄռօա ! Nous sommes passionnés par le hacking et la cybersécurité.</p>
+        </section>
+        <section id="blog">
+            <h2>Blog</h2>
+            <p>Lisez nos derniers articles sur le hacking et la cybersécurité. dans le Discord</p>
+        </section>
+        <section id="contact">
+            <h2>Discord</h2>
+            <p>Rejoignez-notre communauté :</p>
+            <a class="discord-button" href="https://discord.gg/SKpHkRxF9N" target="_blank">Rejoignez-nous</a>
+        </section>
+    </div>
+
+    <footer>
+        &copy; ռօռɛɛɖ2ӄռօա 2024 - Tous droits réservés.
+    </footer>
+
+    <script>
+        // Matrix effect script for the canvas
+        const canvasMiddle = document.getElementById('matrixCanvasMiddle');
+        const ctxMiddle = canvasMiddle.getContext('2d');
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const fontSize = 14;
+        let columnsMiddle;
+        let dropsMiddle;
+
+        function resizeCanvasMiddle() {
+            canvasMiddle.width = window.innerWidth;
+            canvasMiddle.height = window.innerHeight;
+            columnsMiddle = canvasMiddle.width / fontSize;
+            dropsMiddle = Array(Math.floor(columnsMiddle)).fill(1);
+        }
+
+        function drawMatrixMiddle() {
+            ctxMiddle.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctxMiddle.fillRect(0, 0, canvasMiddle.width, canvasMiddle.height);
+            ctxMiddle.fillStyle = '#00FF00';
+            ctxMiddle.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < dropsMiddle.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctxMiddle.fillText(text, i * fontSize, dropsMiddle[i] * fontSize);
+                if (dropsMiddle[i] * fontSize > canvasMiddle.height && Math.random() > 0.975) {
+                    dropsMiddle[i] = 0;
+                }
+                dropsMiddle[i]++;
+            }
+        }
+
+        window.addEventListener('resize', resizeCanvasMiddle);
+        resizeCanvasMiddle();
+        setInterval(drawMatrixMiddle, 35);
+    </script>
+</body>
+</html>
